@@ -13,8 +13,10 @@ const NavBar = observer(() => {
     const navigate = useNavigate()
 
     const logOut = () => {
-        user.setUser({})
-        user.setIsAuth(false)
+        user.setUser({});
+        user.setIsAuth(false);
+        localStorage.removeItem('token');
+        navigate(SHOP_ROUTE);
     }
 
     return (
