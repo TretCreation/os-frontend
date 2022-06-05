@@ -5,20 +5,23 @@ import {BrowserRouter} from 'react-router-dom';
 import { Context } from '.';
 import AppRouter from './components/AppRouter';
 import Navbar from './components/NavBar';
-import { check } from './http/userAPI'
+import { check } from './http/userAPI';
 
 const App = observer(() => {
-  const {user} = useContext(Context)
-  const [loading, setLoading] = useState(true)
+  const {user} = useContext(Context);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      check().then(data => {
-        user.setUser(true)
-        user.setIsAuth(true)
-      }).finally(() => setLoading(false))
-  }, [])
+    user.isAuth && check()
+      .then(data => {
+        user.setUser(true);
+        user.setIsAuth(true);
+      })
+      .catch(e => console.error(e.message));
+    setLoading(false);
+  }, [user]);
 
-  if(loading) {
+  if (loading) {
     return <Spinner animation={'grow'}/>
   }
 
@@ -28,6 +31,6 @@ const App = observer(() => {
       <AppRouter />
     </BrowserRouter>
   );
-}); 
+});
 
 export default App;
