@@ -1,11 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from '..';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from "react-bootstrap/Nav";
-import { Link, NavLink } from "react-router-dom";
-import Container from 'react-bootstrap/Container'
+import { Link } from "react-router-dom";
 import { ADMIN_ROUTE, CART_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
-import Button from 'react-bootstrap/Button';
 import { observer } from "mobx-react-lite";
 import { useNavigate } from 'react-router-dom';
 import Search from './Search';
@@ -23,14 +19,14 @@ const NavBar = observer(() => {
 
     return (
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-                <div class="container">
-                    <Link class="navbar-brand fw-bold fs-5" to={SHOP_ROUTE}>Tret Store</Link> 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+                <div className="container">
+                    <Link className="navbar-brand fw-bold fs-5" to={SHOP_ROUTE}>Tret Store</Link>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <Search/>
                         </ul>
                         <div>
