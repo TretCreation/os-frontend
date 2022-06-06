@@ -18,14 +18,11 @@ const Auth = observer(() => {
 
 	const click = async () => {
 		try {
-			if (isLogin) {
-				await login(email, password);
-			} else {
-				await registration(email, password);
-			}
-			user.setUser(user);
+			const data = isLogin ? await login(email, password) : await registration(email, password);
 			user.setIsAuth(true);
-
+			user.setId(data.id);
+			user.setRole(data.role);
+			user.setEmail(data.email);
 			navigate(SHOP_ROUTE);
 		} catch (error) {
 			alert(error.response.data.message);

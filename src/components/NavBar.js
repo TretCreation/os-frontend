@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from '..';
 import { Link } from 'react-router-dom';
-import { ADMIN_ROUTE, CART_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
+import { ADMIN_ROLE, ADMIN_ROUTE, CART_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import Search from './Search';
@@ -13,8 +13,9 @@ const NavBar = observer(() => {
 	const navigate = useNavigate();
 
 	const logOut = () => {
-		user.setUser({});
+		user.setId(undefined);
 		user.setIsAuth(false);
+		user.setRole("");
 		localStorage.removeItem('token');
 		navigate(SHOP_ROUTE);
 	};
@@ -47,7 +48,7 @@ const NavBar = observer(() => {
 						<div>
 							{user.isAuth ? (
 								<div>
-									<button onClick={() => navigate(ADMIN_ROUTE)}>Admin</button>
+									{user.role === ADMIN_ROLE && (<button onClick={() => navigate(ADMIN_ROUTE)}>Admin</button>)}
 									<button onClick={() => logOut()}>Log out</button>
 								</div>
 							) : (

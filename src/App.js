@@ -15,8 +15,10 @@ const App = observer(() => {
 		() => {
 			check()
 				.then((data) => {
-					user.setUser(true);
 					user.setIsAuth(true);
+					user.setId(data.id);
+					user.setRole(data.role);
+					user.setEmail(data.email);
 				})
 				.catch((e) => console.error(e.message))
 				.finally(() => setLoading(false));

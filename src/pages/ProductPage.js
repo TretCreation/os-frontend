@@ -4,10 +4,10 @@ import { Card, Col, Container, Image, Row } from 'react-bootstrap';
 import { Context } from '..';
 import { useParams } from 'react-router-dom';
 import { fetchOneProduct } from '../http/productAPI';
+import { ADMIN_ROLE } from '../utils/consts';
 
 const ProductPage = observer(() => {
 	const { user } = useContext(Context);
-	console.log(user);
 	const [ product, setProduct ] = useState({ info: [] });
 	const { id } = useParams();
 
@@ -30,7 +30,7 @@ const ProductPage = observer(() => {
 			</Col>
 			<Col md={4}>
 				<Row>
-					<h2>{product.name}</h2>
+					<h2>{product.name}</h2>{user.role === ADMIN_ROLE && "input field"}
 				</Row>
 			</Col>
 			<Col md={4}>
