@@ -9,35 +9,45 @@ import TypeBar from '../components/TypeBar';
 import { fetchBrand, fetchType, fetchProduct } from '../http/productAPI';
 
 const Shop = observer(() => {
-  const {product} = useContext(Context)
-    useEffect(() => {
-      fetchType().then(data => product.setTypes(data))
-      fetchBrand().then(data => product.setBrands(data))
+	const { product } = useContext(Context);
+	useEffect(
+		() => {
+			fetchType().then((data) => product.setTypes(data));
+			fetchBrand().then((data) => product.setBrands(data));
+		},
+		[ product ]
+	);
 
-    }, [product])
+	useEffect(
+		() => {
+			fetchProduct(
+				product.selectedType.id,
+				product.selectedBrand.id,
+				product.page,
+				8,
+				product.filter
+			).then((data) => {
+				product.setProducts(data.rows);
+				product.setTotalCount(data.count);
+			});
+		},
+		[ product.page, product.selectedType, product.selectedBrand, product.filter, product ]
+	);
 
-    useEffect(() => {
-      fetchProduct(product.selectedType.id, product.selectedBrand.id, product.page, 8, product.filter).then(data => {
-        product.setProducts(data.rows)
-        product.setTotalCount(data.count)
-      })
-    }, [product.page, product.selectedType, product.selectedBrand, product.filter, product])
-
-    return (
-      <Container>
-        <Row>
-            <Col md = {3}>
-              <BrandBar/>
-
-            </Col>
-            <Col md = {9}>
-              <TypeBar/>
-              <ProductList/>
-              <Pages/>
-            </Col>
-        </Row>
-      </Container>
-    );
+	return (
+		<Container>
+			<Row>
+				<Col md={3}>
+					<BrandBar />
+				</Col>
+				<Col md={9}>
+					<TypeBar />
+					<ProductList />
+					<Pages />
+				</Col>
+			</Row>
+		</Container>
+	);
 });
 
 export default Shop;
