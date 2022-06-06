@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
+import { Card, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { useParams } from 'react-router-dom';
 import { fetchOneProduct } from '../http/productAPI';
@@ -13,9 +13,12 @@ const ProductPage = () => {
 	//   console.log(item)
 	// }
 
-	useEffect(() => {
-		fetchOneProduct(id).then((data) => setProduct(data));
-	}, []);
+	useEffect(
+		() => {
+			fetchOneProduct(id).then((data) => setProduct(data));
+		},
+		[ id ]
+	);
 
 	return (
 		<Container>
