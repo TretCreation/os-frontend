@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect, useState, useContext } from 'react';
 import { Card, Col, Container, Image, Row } from 'react-bootstrap';
-
+import { Context } from '..';
 import { useParams } from 'react-router-dom';
 import { fetchOneProduct } from '../http/productAPI';
 
-const ProductPage = () => {
+const ProductPage = observer(() => {
+	const { user } = useContext(Context);
+	console.log(user);
 	const [ product, setProduct ] = useState({ info: [] });
 	const { id } = useParams();
 
@@ -46,6 +49,6 @@ const ProductPage = () => {
 			</Row>
 		</Container>
 	);
-};
+});
 
 export default ProductPage;
