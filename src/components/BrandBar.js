@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
-import { Card, Row } from 'react-bootstrap';
-import { Context } from '..';
+import { observer } from "mobx-react-lite";
+import React, { useContext } from "react";
+import { Card, Row } from "react-bootstrap";
+import { Context } from "..";
 
 const BrandBar = observer(() => {
 	const { product } = useContext(Context);
@@ -12,8 +12,8 @@ const BrandBar = observer(() => {
 					key={brand.id}
 					className="p-3"
 					onClick={() => product.setSelectedBrand(product.selectedBrand.id === brand.id ? {} : brand)}
-					border={brand.id === product.selectedBrand.id ? 'danger' : 'light'}
-					style={{ cursor: 'pointer', width: '10rem' }} // brand cart (change width)
+					border={brand.id === product.selectedBrand.id ? "danger" : "light"}
+					style={{ cursor: "pointer", width: "10rem" }} // brand cart (change width)
 				>
 					{brand.name}
 				</Card>

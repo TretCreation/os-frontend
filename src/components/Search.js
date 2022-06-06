@@ -1,6 +1,6 @@
-import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
-import { Context } from '..';
+import { observer } from "mobx-react-lite";
+import React, { useContext } from "react";
+import { Context } from "..";
 
 const Search = observer(() => {
 	const { product } = useContext(Context);

@@ -1,11 +1,11 @@
-import { observer } from 'mobx-react-lite';
-import React, { useContext, useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Context } from '..';
-import { login, registration } from '../http/userAPI';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/consts';
+import { observer } from "mobx-react-lite";
+import React, { useContext, useState } from "react";
+import { Container, Form, Button } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Context } from "..";
+import { login, registration } from "../http/userAPI";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
 
 const Auth = observer(() => {
 	const { user } = useContext(Context);
@@ -13,8 +13,8 @@ const Auth = observer(() => {
 	const navigate = useNavigate();
 	const isLogin = location.pathname === LOGIN_ROUTE;
 
-	const [ email, setEmail ] = useState('');
-	const [ password, setPassword ] = useState('');
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const click = async () => {
 		try {
@@ -35,7 +35,7 @@ const Auth = observer(() => {
 			style={{ height: window.innerHeight - 54 }}
 		>
 			<Card style={{ wight: 600 }} className="p-5">
-				<h2 className="m-auto">{isLogin ? 'Login In' : 'Sign up'}</h2>
+				<h2 className="m-auto">{isLogin ? "Login In" : "Sign up"}</h2>
 				<Form className="d-flex flex-column">
 					<Form.Control
 						className="mt-2"
@@ -60,7 +60,7 @@ const Auth = observer(() => {
 						</div>
 					)}
 					<Button className="mt-3" onClick={click}>
-						{isLogin ? 'Log in' : 'Sign up'}
+						{isLogin ? "Log in" : "Sign up"}
 					</Button>
 				</Form>
 			</Card>

@@ -1,38 +1,28 @@
-import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { Context } from '..';
-import BrandBar from '../components/BrandBar';
-import Pages from '../components/Pages';
-import ProductList from '../components/ProductList';
-import TypeBar from '../components/TypeBar';
-import { fetchBrand, fetchType, fetchProduct } from '../http/productAPI';
+import { observer } from "mobx-react-lite";
+import React, { useContext, useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { Context } from "..";
+import BrandBar from "../components/BrandBar";
+import Pages from "../components/Pages";
+import ProductList from "../components/ProductList";
+import TypeBar from "../components/TypeBar";
+import { fetchBrand, fetchType, fetchProduct } from "../http/productAPI";
 
 const Shop = observer(() => {
 	const { product } = useContext(Context);
-	useEffect(
-		() => {
-			fetchType().then((data) => product.setTypes(data));
-			fetchBrand().then((data) => product.setBrands(data));
-		},
-		[ product ]
-	);
+	useEffect(() => {
+		fetchType().then((data) => product.setTypes(data));
+		fetchBrand().then((data) => product.setBrands(data));
+	}, [product]);
 
-	useEffect(
-		() => {
-			fetchProduct(
-				product.selectedType.id,
-				product.selectedBrand.id,
-				product.page,
-				8,
-				product.filter
-			).then((data) => {
+	useEffect(() => {
+		fetchProduct(product.selectedType.id, product.selectedBrand.id, product.page, 8, product.filter).then(
+			(data) => {
 				product.setProducts(data.rows);
 				product.setTotalCount(data.count);
-			});
-		},
-		[ product.page, product.selectedType, product.selectedBrand, product.filter, product ]
-	);
+			}
+		);
+	}, [product.page, product.selectedType, product.selectedBrand, product.filter, product]);
 
 	return (
 		<Container>

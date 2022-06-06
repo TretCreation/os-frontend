@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from "mobx";
 
 export default class ProductStore {
 	constructor() {
@@ -8,7 +8,7 @@ export default class ProductStore {
 
 		this._selectedType = {};
 		this._selectedBrand = {};
-		this._filter = '';
+		this._filter = "";
 		this._page = 1;
 		this._totalCount = 0;
 		this._limit = 8;
