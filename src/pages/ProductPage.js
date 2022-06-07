@@ -4,8 +4,9 @@ import { Card, Col, Container, Image, Row, Form, Button, Dropdown } from "react-
 import { Context } from "..";
 import { useParams } from "react-router-dom";
 import { fetchOneProduct } from "../http/productAPI";
-import { ADMIN_ROLE } from "../utils/consts";
-import { updateProduct, fetchType, fetchBrand } from "../http/productAPI";
+import { ADMIN_ROLE, SHOP_ROUTE } from "../utils/consts";
+import { useNavigate } from "react-router-dom";
+import { updateProduct, deleteProduct, fetchType, fetchBrand, deleteProductInfo } from "../http/productAPI";
 
 const ProductPage = observer(() => {
 	const { user } = useContext(Context);
@@ -42,7 +43,7 @@ const ProductPage = observer(() => {
 		setInfo([...info, { title: "", description: "", id: "id_" + Date.now() }]);
 	};
 	const removeInfo = (id) => {
-		setInfo(info.filter((i) => i.id !== id));
+		deleteProductInfo(id).then((data) => data && setInfo(info.filter((i) => i.id !== id)));
 	};
 	const changeInfo = (key, value, id) => {
 		setInfo(info.map((i) => (i.id === id ? { ...i, [key]: value } : i)));
@@ -50,14 +51,20 @@ const ProductPage = observer(() => {
 
 	const update = () => {
 		const formData = new FormData();
-		formData.append("id", id);
 		formData.append("name", name);
 		formData.append("price", price);
 		formData.append("img", newImg);
 		formData.append("brandId", brandId);
 		formData.append("typeId", typeId);
 		formData.append("info", JSON.stringify(info));
-		updateProduct(formData).then(setImg(""));
+		updateProduct(id, formData).then(setImg(""));
+	};
+
+	const navigate = useNavigate();
+	const remove = () => {
+		deleteProduct(id).then((data) => {
+			data && navigate(SHOP_ROUTE);
+		});
 	};
 
 	return (
@@ -177,6 +184,9 @@ const ProductPage = observer(() => {
 					</Form>
 					<Button variant="outline-dark" onClick={update}>
 						Update
+					</Button>
+					<Button variant="outline-dark" onClick={remove}>
+						Delete
 					</Button>
 				</div>
 			)}
