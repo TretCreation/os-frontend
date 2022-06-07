@@ -21,6 +21,7 @@ const ProductPage = observer(() => {
 	const [price, setPrice] = useState("");
 	const [info, setInfo] = useState("");
 	const [img, setImg] = useState("");
+	const [newImg, setNewImg] = useState("");
 
 	useEffect(() => {
 		fetchOneProduct(id).then((data) => {
@@ -35,10 +36,10 @@ const ProductPage = observer(() => {
 		});
 		fetchType().then((data) => setTypes(data));
 		fetchBrand().then((data) => setBrands(data));
-	}, [id]);
+	}, [id, img]);
 
 	const addInfo = () => {
-		setInfo([...info, { title: "", description: "", id: Date.now() }]);
+		setInfo([...info, { title: "", description: "", id: "id_" + Date.now() }]);
 	};
 	const removeInfo = (id) => {
 		setInfo(info.filter((i) => i.id !== id));
@@ -52,18 +53,18 @@ const ProductPage = observer(() => {
 		formData.append("id", id);
 		formData.append("name", name);
 		formData.append("price", price);
-		formData.append("img", img);
+		formData.append("img", newImg);
 		formData.append("brandId", brandId);
 		formData.append("typeId", typeId);
 		formData.append("info", JSON.stringify(info));
-		updateProduct(formData);
+		updateProduct(formData).then(setImg(""));
 	};
 
 	return (
 		<Container>
 			<div>
 				<Col md={4}>
-					<Image width={300} height={300} src={img && process.env.REACT_APP_API_URL + "/" + img} />
+					<Image width={300} height={300} src={img && process.env.REACT_APP_API_URL + img} />
 				</Col>
 				<Col md={4}>
 					<Row>
@@ -142,7 +143,7 @@ const ProductPage = observer(() => {
 							className="mt-3"
 							type="file"
 							onChange={(e) => {
-								setImg(e.target.files[0]);
+								setNewImg(e.target.files[0]);
 							}}
 						/>
 						<hr />
