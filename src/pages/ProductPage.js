@@ -176,17 +176,17 @@ const ProductPage = observer(() => {
 									</Col>
 									<Col md={4}>
 										<Button onClick={() => removeInfo(i.id)} variant={"outline-dark"}>
-											Delete
+											Delete Info
 										</Button>
 									</Col>
 								</Row>
 							))}
 					</Form>
 					<Button variant="outline-dark" onClick={update}>
-						Update
+						Update Product
 					</Button>
 					<Button variant="outline-dark" onClick={remove}>
-						Delete
+						Delete Product
 					</Button>
 				</div>
 			)}
