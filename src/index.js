@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import ProductStore from "./store/ProductStore";
 import UserStore from "./store/UserStore";
+import CartStore from "./store/CartStore";
 
 export const Context = createContext(null);
 
@@ -12,6 +13,7 @@ root.render(
 		value={{
 			user: new UserStore(),
 			product: new ProductStore(),
+			cart: new CartStore(),
 		}}
 	>
 		<App />

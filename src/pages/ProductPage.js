@@ -1,12 +1,13 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState, useContext } from "react";
-import { Card, Col, Container, Image, Row, Form, Button, Dropdown } from "react-bootstrap";
+import { Col, Container, Image, Row, Form, Button, Dropdown } from "react-bootstrap";
 import { Context } from "..";
 import { useParams } from "react-router-dom";
 import { fetchOneProduct } from "../http/productAPI";
 import { ADMIN_ROLE, SHOP_ROUTE } from "../utils/consts";
 import { useNavigate } from "react-router-dom";
 import { updateProduct, deleteProduct, fetchType, fetchBrand, deleteProductInfo } from "../http/productAPI";
+import AddToCartWidget from "../components/AddToCartWidget";
 
 const ProductPage = observer(() => {
 	const { user } = useContext(Context);
@@ -79,10 +80,10 @@ const ProductPage = observer(() => {
 					</Row>
 				</Col>
 				<Col md={4}>
-					<Card>
-						<h3>{price} ₴</h3>
-						<button onClick={() => console.log(name)}>Click to cart</button>
-					</Card>
+					<h3>{price} ₴</h3>
+				</Col>
+				<Col md={4}>
+					<AddToCartWidget productId={+id} name={name} price={+price} img={img} />
 				</Col>
 				<Row className="d-flex m-3">
 					<h2>Characteristics</h2>

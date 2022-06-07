@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { Context } from "..";
 import { Link } from "react-router-dom";
-import { ADMIN_ROLE, ADMIN_ROUTE, CART_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
+import { ADMIN_ROLE, ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import Search from "./Search";
-
-// import {setIsAuth} from '../store/UserStore';
+import CartWidget from "./CartWidget";
 
 const NavBar = observer(() => {
 	const { user } = useContext(Context);
@@ -43,7 +42,7 @@ const NavBar = observer(() => {
 							<Search />
 						</ul>
 						<div>
-							<button onClick={() => navigate(CART_ROUTE)}>CART</button>
+							<CartWidget />
 						</div>
 						<div>
 							{user.isAuth ? (
