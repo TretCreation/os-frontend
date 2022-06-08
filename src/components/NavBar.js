@@ -5,6 +5,7 @@ import {
     ADMIN_ROLE,
     ADMIN_ROUTE,
     LOGIN_ROUTE,
+    REGISTRATION_ROUTE,
     SHOP_ROUTE,
 } from "../utils/consts";
 import { observer } from "mobx-react-lite";
@@ -28,23 +29,11 @@ const NavBar = observer(() => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
                     <Link className="navbar-brand fw-bold fs-5" to={SHOP_ROUTE}>
                         Tret Store
                     </Link>
-                    <button
-                        className="navbar-brand"
-                        style={{ cursor: "pointer" }}
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon" />
-                    </button>
                     <div
                         className="collapse navbar-collapse"
                         id="navbarSupportedContent"
