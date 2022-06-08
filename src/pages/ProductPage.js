@@ -1,7 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState, useContext } from "react";
 import {
-    Card,
     Col,
     Container,
     Image,
@@ -13,8 +12,16 @@ import {
 import { Context } from "..";
 import { useParams } from "react-router-dom";
 import { fetchOneProduct } from "../http/productAPI";
-import { ADMIN_ROLE } from "../utils/consts";
-import { updateProduct, fetchType, fetchBrand } from "../http/productAPI";
+import { ADMIN_ROLE, SHOP_ROUTE } from "../utils/consts";
+import { useNavigate } from "react-router-dom";
+import {
+    updateProduct,
+    deleteProduct,
+    fetchType,
+    fetchBrand,
+    deleteProductInfo,
+} from "../http/productAPI";
+import AddToCartWidget from "../components/AddToCartWidget";
 
 const ProductPage = observer(() => {
     const { user } = useContext(Context);
@@ -30,6 +37,7 @@ const ProductPage = observer(() => {
     const [price, setPrice] = useState("");
     const [info, setInfo] = useState("");
     const [img, setImg] = useState("");
+    const [newImg, setNewImg] = useState("");
 
     useEffect(() => {
         fetchOneProduct(id).then((data) => {
@@ -44,13 +52,18 @@ const ProductPage = observer(() => {
         });
         fetchType().then((data) => setTypes(data));
         fetchBrand().then((data) => setBrands(data));
-    }, [id]);
+    }, [id, img]);
 
     const addInfo = () => {
-        setInfo([...info, { title: "", description: "", id: Date.now() }]);
+        setInfo([
+            ...info,
+            { title: "", description: "", id: "id_" + Date.now() },
+        ]);
     };
     const removeInfo = (id) => {
-        setInfo(info.filter((i) => i.id !== id));
+        deleteProductInfo(id).then(
+            (data) => data && setInfo(info.filter((i) => i.id !== id))
+        );
     };
     const changeInfo = (key, value, id) => {
         setInfo(info.map((i) => (i.id === id ? { ...i, [key]: value } : i)));
@@ -58,14 +71,20 @@ const ProductPage = observer(() => {
 
     const update = () => {
         const formData = new FormData();
-        formData.append("id", id);
         formData.append("name", name);
         formData.append("price", price);
-        formData.append("img", img);
+        formData.append("img", newImg);
         formData.append("brandId", brandId);
         formData.append("typeId", typeId);
         formData.append("info", JSON.stringify(info));
-        updateProduct(formData);
+        updateProduct(id, formData).then(setImg(""));
+    };
+
+    const navigate = useNavigate();
+    const remove = () => {
+        deleteProduct(id).then((data) => {
+            data && navigate(SHOP_ROUTE);
+        });
     };
 
     return (
@@ -75,7 +94,7 @@ const ProductPage = observer(() => {
                     <Image
                         width={300}
                         height={300}
-                        src={img && process.env.REACT_APP_API_URL + "/" + img}
+                        src={img && process.env.REACT_APP_API_URL + img}
                     />
                 </Col>
                 <Col md={4}>
@@ -84,13 +103,15 @@ const ProductPage = observer(() => {
                     </Row>
                 </Col>
                 <Col md={4}>
-                    <Card>
-                        <h3>{price} ₴</h3>
-
-                        <button onClick={() => console.log(name)}>
-                            Click to cart
-                        </button>
-                    </Card>
+                    <h3>{price} ₴</h3>
+                </Col>
+                <Col md={4}>
+                    <AddToCartWidget
+                        productId={+id}
+                        name={name}
+                        price={+price}
+                        img={img}
+                    />
                 </Col>
                 <Row className="d-flex m-3">
                     <h2>Characteristics</h2>
@@ -158,7 +179,7 @@ const ProductPage = observer(() => {
                             className="mt-3"
                             type="file"
                             onChange={(e) => {
-                                setImg(e.target.files[0]);
+                                setNewImg(e.target.files[0]);
                             }}
                         />
                         <hr />
@@ -199,14 +220,17 @@ const ProductPage = observer(() => {
                                             onClick={() => removeInfo(i.id)}
                                             variant={"outline-dark"}
                                         >
-                                            Delete
+                                            Delete Info
                                         </Button>
                                     </Col>
                                 </Row>
                             ))}
                     </Form>
                     <Button variant="outline-dark" onClick={update}>
-                        Update
+                        Update Product
+                    </Button>
+                    <Button variant="outline-dark" onClick={remove}>
+                        Delete Product
                     </Button>
                 </div>
             )}

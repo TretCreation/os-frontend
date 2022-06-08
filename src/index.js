@@ -5,6 +5,7 @@ import ProductStore from "./store/ProductStore";
 import UserStore from "./store/UserStore";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
+import CartStore from "./store/CartStore";
 
 export const Context = createContext(null);
 
@@ -14,6 +15,7 @@ root.render(
         value={{
             user: new UserStore(),
             product: new ProductStore(),
+            cart: new CartStore(),
         }}
     >
         <App />
