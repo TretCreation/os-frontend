@@ -3,21 +3,22 @@ import React, { useContext } from "react";
 import { Context } from "..";
 
 const Search = observer(() => {
-	const { product } = useContext(Context);
+    const { product } = useContext(Context);
 
-	return (
-		<div>
-			<form className="d-flex">
-				<input
-					type="search"
-					className="form-control me-2"
-					placeholder="Search"
-					aria-label="Search"
-					onChange={(e) => product.setFilter(e.target.value)}
-				/>
-			</form>
-		</div>
-	);
+    return (
+        <div className="form-group">
+            {/* <form className="d-flex"> */}
+            <input
+                type="search"
+                className="form-control"
+                placeholder="Search"
+                aria-label="Search"
+                onChange={(e) => product.setFilter(e.target.value)}
+                style={{ width: "20rem" }}
+            />
+            {/* </form> */}
+        </div>
+    );
 });
 
 export default Search;
