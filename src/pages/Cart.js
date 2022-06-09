@@ -1,17 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
 import { observer } from "mobx-react-lite";
-import { Row } from "react-bootstrap";
+import { Row, Button } from "react-bootstrap";
 import CartItem from "../components/CartItem";
 import { Context } from "..";
+import { createOrder } from "../http/orderAPI";
 
 const Cart = observer(() => {
-	const { cart } = useContext(Context);
+	const { cart, user } = useContext(Context);
 	const [cartList, setCartList] = useState([]);
 
 	useEffect(() => {
 		let cartLS = localStorage.getItem("cart") || "[]";
 		setCartList(JSON.parse(cartLS));
 	}, [cart.items, cart.summary, cart]);
+
+	const makeOrder = () => {
+		const cartData = cartList.map((item) => ({ productId: item.productId, count: item.count }));
+		const formData = new FormData();
+		formData.append("userId", user.id);
+		formData.append("cartData", JSON.stringify(cartData));
+		createOrder(formData).then((data) => console.log(data));
+	};
 
 	return (
 		<Row className="d-flex">
@@ -28,6 +37,9 @@ const Cart = observer(() => {
 					count={product.count}
 				/>
 			))}
+			<Button variant={"outline-dark"} onClick={makeOrder}>
+				Order
+			</Button>
 		</Row>
 	);
 });

@@ -6,17 +6,17 @@ import BrandBar from "../components/BrandBar";
 import Pages from "../components/Pages";
 import ProductList from "../components/ProductList";
 import TypeBar from "../components/TypeBar";
-import { fetchBrand, fetchType, fetchProduct } from "../http/productAPI";
+import { fetchBrands, fetchTypes, fetchProducts } from "../http/productAPI";
 
 const Shop = observer(() => {
 	const { product } = useContext(Context);
 	useEffect(() => {
-		fetchType().then((data) => product.setTypes(data));
-		fetchBrand().then((data) => product.setBrands(data));
+		fetchTypes().then((data) => product.setTypes(data));
+		fetchBrands().then((data) => product.setBrands(data));
 	}, [product]);
 
 	useEffect(() => {
-		fetchProduct(product.selectedType.id, product.selectedBrand.id, product.page, 8, product.filter).then(
+		fetchProducts(product.selectedType.id, product.selectedBrand.id, product.page, 8, product.filter).then(
 			(data) => {
 				product.setProducts(data.rows);
 				product.setTotalCount(data.count);

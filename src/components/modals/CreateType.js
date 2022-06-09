@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { createTypes } from "../../http/productAPI";
+import { createType } from "../../http/productAPI";
 
 const CreateType = ({ show, onHide }) => {
 	const [value, setValue] = useState("");
 	const addType = () => {
-		createTypes({ name: value }).then((data) => {
+		createType({ name: value }).then((data) => {
 			setValue("");
 			onHide();
 		});

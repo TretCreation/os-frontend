@@ -21,9 +21,7 @@ const CartItem = ({ productId, name, price, img, count }) => {
 	const removeFromCart = () => {
 		let cartLS = localStorage.getItem("cart") || "[]";
 		cartLS = JSON.parse(cartLS);
-		console.log(cartLS);
 		cartLS = cartLS.filter((item) => item.productId !== productId);
-		console.log(cartLS);
 		localStorage.setItem("cart", JSON.stringify(cartLS));
 		cart.recalculate();
 	};

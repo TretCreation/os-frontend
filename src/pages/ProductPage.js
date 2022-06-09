@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { fetchOneProduct } from "../http/productAPI";
 import { ADMIN_ROLE, SHOP_ROUTE } from "../utils/consts";
 import { useNavigate } from "react-router-dom";
-import { updateProduct, deleteProduct, fetchType, fetchBrand, deleteProductInfo } from "../http/productAPI";
+import { updateProduct, deleteProduct, fetchTypes, fetchBrands, deleteProductInfo } from "../http/productAPI";
 import AddToCartWidget from "../components/AddToCartButton";
 
 const ProductPage = observer(() => {
@@ -36,8 +36,8 @@ const ProductPage = observer(() => {
 			setInfo(data.info);
 			setImg(data.img);
 		});
-		fetchType().then((data) => setTypes(data));
-		fetchBrand().then((data) => setBrands(data));
+		fetchTypes().then((data) => setTypes(data));
+		fetchBrands().then((data) => setBrands(data));
 	}, [id, img]);
 
 	const addInfo = () => {
@@ -147,6 +147,7 @@ const ProductPage = observer(() => {
 							placeholder="Enter the price of the product"
 							type="number"
 							step="0.01"
+							min={0.01}
 						/>
 						<Form.Control
 							className="mt-3"

@@ -13,7 +13,7 @@ export default class CartStore {
 		let cartLS = localStorage.getItem("cart") || "[]";
 		cartLS = JSON.parse(cartLS);
 		this._items = cartLS.reduce((prev, curr) => prev + curr.count, 0);
-		this._summary = cartLS.reduce((prev, curr) => prev + curr.count * curr.price, 0);
+		this._summary = cartLS.reduce((prev, curr) => prev + curr.count * curr.price, 0).toFixed(2);
 	}
 
 	get items() {

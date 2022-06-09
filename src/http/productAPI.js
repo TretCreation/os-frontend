@@ -1,11 +1,11 @@
 import { $authHost, $host } from "./index";
 
-export const createTypes = async (type) => {
+export const createType = async (type) => {
 	const { data } = await $authHost.post("api/type", type);
 	return data;
 };
 
-export const fetchType = async () => {
+export const fetchTypes = async () => {
 	const { data } = await $host.get("api/type");
 	return data;
 };
@@ -15,7 +15,7 @@ export const createBrand = async (brand) => {
 	return data;
 };
 
-export const fetchBrand = async () => {
+export const fetchBrands = async () => {
 	const { data } = await $host.get("api/brand");
 	return data;
 };
@@ -35,7 +35,7 @@ export const deleteProduct = async (id) => {
 	return data;
 };
 
-export const fetchProduct = async (typeId, brandId, page, limit = 5, filter = "") => {
+export const fetchProducts = async (typeId, brandId, page, limit = 5, filter = "") => {
 	const { data } = await $host.get("api/product", { params: { typeId, brandId, page, limit, filter } });
 	return data;
 };

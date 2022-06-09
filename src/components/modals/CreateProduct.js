@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Dropdown, Form, Modal, Row } from "react-bootstrap";
 import { Context } from "../..";
-import { createProduct, fetchBrand, fetchType } from "../../http/productAPI";
+import { createProduct, fetchBrands, fetchTypes } from "../../http/productAPI";
 
 const CreateProduct = observer(({ show, onHide }) => {
 	const { product } = useContext(Context);
@@ -10,13 +10,11 @@ const CreateProduct = observer(({ show, onHide }) => {
 	const [price, setPrice] = useState(0);
 	const [name, setName] = useState("");
 	const [file, setFile] = useState(null);
-	// const [brand, setBrand] = useState(null)
-	// const [type, setType] = useState(null)
 	const [info, setInfo] = useState([]);
 
 	useEffect(() => {
-		fetchType().then((data) => product.setTypes(data));
-		fetchBrand().then((data) => product.setBrands(data));
+		fetchTypes().then((data) => product.setTypes(data));
+		fetchBrands().then((data) => product.setBrands(data));
 	}, [product]);
 
 	const addInfo = () => {
@@ -84,6 +82,8 @@ const CreateProduct = observer(({ show, onHide }) => {
 						onChange={(e) => setPrice(+e.target.value)}
 						placeholder="Enter the price of the product"
 						type="number"
+						step="0.01"
+						min={0.01}
 					/>
 					<Form.Control className="mt-3" type="file" onChange={selectFile} />
 					<hr />
