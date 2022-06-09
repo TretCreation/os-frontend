@@ -14,9 +14,8 @@ const AddToCartWidget = observer(({ productId, name, price, img }) => {
 		} else {
 			cartLS = [...cartLS, { productId, name, price, img, count: 1 }];
 		}
-		cart.setItems(cartLS.reduce((prev, curr) => prev + curr.count, 0));
-		cart.setSummary(cartLS.reduce((prev, curr) => prev + curr.count * curr.price, 0));
 		localStorage.setItem("cart", JSON.stringify(cartLS));
+		cart.recalculate();
 	};
 
 	return <button onClick={() => addToCart()}>Add to Cart</button>;
