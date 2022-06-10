@@ -72,7 +72,7 @@ const ProductPage = observer(() => {
 		<Container>
 			<div>
 				<Col md={4}>
-					<Image width={300} height={300} src={img && process.env.REACT_APP_API_URL + img} />
+					<Image width={300} height={300} src={img && process.env.REACT_APP_DO_BUCKET_URL + img} />
 				</Col>
 				<Col md={4}>
 					<Row>

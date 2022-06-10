@@ -33,7 +33,7 @@ const CartItem = ({ productId, name, price, img, count }) => {
 				border={"light"}
 				onClick={() => navigate(PRODUCT_ROUTE + "/" + productId)}
 			>
-				<Image width={150} height={150} src={process.env.REACT_APP_API_URL + "/" + img} />
+				<Image width={150} height={150} src={process.env.REACT_APP_DO_BUCKET_URL + img} />
 				<div>{name}</div>
 				<div>price: {price}</div>
 			</Card>
