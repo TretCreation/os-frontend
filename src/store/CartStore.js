@@ -18,6 +18,8 @@ export default class CartStore {
 
 	clear() {
 		localStorage.setItem("cart", []);
+		this._items = 0;
+		this._summary = 0;
 	}
 
 	get items() {

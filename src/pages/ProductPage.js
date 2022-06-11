@@ -80,7 +80,7 @@ const ProductPage = observer(() => {
 					</Row>
 				</Col>
 				<Col md={4}>
-					<h3>{price} ₴</h3>
+					<h3>${price}</h3>
 				</Col>
 				<Col md={4}>
 					<AddToCartWidget productId={+id} name={name} price={+price} img={img} />

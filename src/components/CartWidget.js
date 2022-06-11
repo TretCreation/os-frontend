@@ -8,9 +8,11 @@ const CartWidget = observer(() => {
 	const { cart } = useContext(Context);
 
 	return (
-		<Link className="navbar-brand fw-bold fs-5" to={CART_ROUTE}>
-			Кошик ({cart.items} шт., {cart.summary}₴)
-		</Link>
+		cart.items > 0 && (
+			<Link className="navbar-brand fw-bold fs-5" to={CART_ROUTE}>
+				Cart: ({cart.items} items, ${cart.summary})
+			</Link>
+		)
 	);
 });
 
