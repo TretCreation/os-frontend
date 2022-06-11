@@ -9,7 +9,7 @@ const CartWidget = observer(() => {
 
 	return (
 		<Link className="navbar-brand fw-bold fs-5" to={CART_ROUTE}>
-			Cart ({cart.items} items, {cart.summary}₴ summary)
+			Кошик ({cart.items} шт., {cart.summary}₴)
 		</Link>
 	);
 });

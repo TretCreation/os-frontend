@@ -4,7 +4,7 @@ import CreateBrand from "../components/modals/CreateBrand";
 import CreateProduct from "../components/modals/CreateProduct";
 import CreateType from "../components/modals/CreateType";
 
-const Admin = () => {
+const AdminPage = () => {
 	const [brandVisible, setBrandVisible] = useState(false);
 	const [typeVisible, setTypeVisible] = useState(false);
 	const [productVisible, setProductVisible] = useState(false);
@@ -27,4 +27,4 @@ const Admin = () => {
 	);
 };
 
-export default Admin;
+export default AdminPage;

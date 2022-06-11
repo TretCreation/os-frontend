@@ -4,8 +4,10 @@ import { Row, Button } from "react-bootstrap";
 import CartItem from "../components/CartItem";
 import { Context } from "..";
 import { createOrder } from "../http/orderAPI";
+import { useNavigate } from "react-router-dom";
+import { ORDER_ROUTE } from "../utils/consts";
 
-const Cart = observer(() => {
+const CartPage = observer(() => {
 	const { cart, user } = useContext(Context);
 	const [cartList, setCartList] = useState([]);
 
@@ -14,12 +16,14 @@ const Cart = observer(() => {
 		setCartList(JSON.parse(cartLS));
 	}, [cart.items, cart.summary, cart]);
 
+	const navigate = useNavigate();
+
 	const makeOrder = () => {
 		const cartData = cartList.map((item) => ({ productId: item.productId, count: item.count }));
 		const formData = new FormData();
 		formData.append("userId", user.id);
 		formData.append("cartData", JSON.stringify(cartData));
-		createOrder(formData).then((data) => console.log(data));
+		createOrder(formData).then((order) => order && navigate(ORDER_ROUTE + "/" + order.id));
 	};
 
 	return (
@@ -44,4 +48,4 @@ const Cart = observer(() => {
 	);
 });
 
-export default Cart;
+export default CartPage;

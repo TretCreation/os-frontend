@@ -8,7 +8,7 @@ import ProductList from "../components/ProductList";
 import TypeBar from "../components/TypeBar";
 import { fetchBrands, fetchTypes, fetchProducts } from "../http/productAPI";
 
-const Shop = observer(() => {
+const ShopPage = observer(() => {
 	const { product } = useContext(Context);
 	useEffect(() => {
 		fetchTypes().then((data) => product.setTypes(data));
@@ -40,4 +40,4 @@ const Shop = observer(() => {
 	);
 });
 
-export default Shop;
+export default ShopPage;

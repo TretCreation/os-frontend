@@ -33,7 +33,7 @@ const ProductPage = observer(() => {
 			setBrandName(data.brand.name);
 			setName(data.name);
 			setPrice(data.price);
-			setInfo(data.info);
+			setInfo(data.product_infos);
 			setImg(data.img);
 		});
 		fetchTypes().then((data) => setTypes(data));

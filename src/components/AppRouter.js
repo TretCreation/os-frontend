@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Context } from "..";
-import Shop from "../pages/Shop";
+import Shop from "../pages/ShopPage";
 import { authRoutes, publicRoutes } from "../routes";
 
 const AppRouter = () => {

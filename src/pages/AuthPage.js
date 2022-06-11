@@ -7,7 +7,7 @@ import { Context } from "..";
 import { login, registration } from "../http/userAPI";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
 
-const Auth = observer(() => {
+const AuthPage = observer(() => {
 	const { user } = useContext(Context);
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -68,4 +68,4 @@ const Auth = observer(() => {
 	);
 });
 
-export default Auth;
+export default AuthPage;

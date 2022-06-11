@@ -16,6 +16,10 @@ export default class CartStore {
 		this._summary = cartLS.reduce((prev, curr) => prev + curr.count * curr.price, 0).toFixed(2);
 	}
 
+	clear() {
+		localStorage.setItem("cart", []);
+	}
+
 	get items() {
 		return this._items;
 	}
