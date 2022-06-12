@@ -1,12 +1,20 @@
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useMemo } from "react";
 import { Col, Container, Image, Row, Form, Button, Dropdown } from "react-bootstrap";
 import { Context } from "..";
 import { useParams } from "react-router-dom";
 import { fetchOneProduct } from "../http/productAPI";
+import RecommendedItem from "../components/RecommendedItem";
 import { ADMIN_ROLE, SHOP_ROUTE } from "../utils/consts";
 import { useNavigate } from "react-router-dom";
-import { updateProduct, deleteProduct, fetchTypes, fetchBrands, deleteProductInfo } from "../http/productAPI";
+import {
+	updateProduct,
+	deleteProduct,
+	fetchTypes,
+	fetchBrands,
+	deleteProductInfo,
+	getRecommended,
+} from "../http/productAPI";
 import AddToCartWidget from "../components/AddToCartButton";
 
 const ProductPage = observer(() => {
@@ -24,8 +32,9 @@ const ProductPage = observer(() => {
 	const [info, setInfo] = useState("");
 	const [img, setImg] = useState("");
 	const [newImg, setNewImg] = useState("");
+	const [recommended, setRecommended] = useState([]);
 
-	useEffect(() => {
+	useMemo(() => {
 		fetchOneProduct(id).then((data) => {
 			setTypeId(data.type.id);
 			setTypeName(data.type.name);
@@ -36,9 +45,13 @@ const ProductPage = observer(() => {
 			setInfo(data.product_infos);
 			setImg(data.img);
 		});
+	}, [img]);
+
+	useMemo(() => {
 		fetchTypes().then((data) => setTypes(data));
 		fetchBrands().then((data) => setBrands(data));
-	}, [id, img]);
+		getRecommended(id).then((data) => setRecommended(data));
+	}, []);
 
 	const addInfo = () => {
 		setInfo([...info, { title: "", description: "", id: "id_" + Date.now() }]);
@@ -85,16 +98,28 @@ const ProductPage = observer(() => {
 				<Col md={4}>
 					<AddToCartWidget productId={+id} name={name} price={+price} img={img} />
 				</Col>
-				<Row className="d-flex m-3">
-					<h2>Characteristics</h2>
-					{info &&
-						info.map((info) => (
+				{info.length > 0 && (
+					<Row className="d-flex m-3">
+						<h2>Characteristics</h2>
+						{info.map((info) => (
 							<Row key={info.id}>
 								{info.title}: {info.description}
 							</Row>
 						))}
-				</Row>
+					</Row>
+				)}
 			</div>
+			{recommended.length > 0 && <h3>Recommended:</h3>}
+			{recommended.map((product) => (
+				<RecommendedItem
+					key={product.id}
+					productId={product.id}
+					name={product.name}
+					price={product.price}
+					img={product.img}
+					count={1}
+				/>
+			))}
 			{user.role === ADMIN_ROLE && (
 				<div>
 					<Form>
