@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { Row } from "react-bootstrap";
 import OrderItem from "../components/OrderItem";
@@ -13,11 +13,13 @@ const OrderPage = observer(() => {
 	const { cart } = useContext(Context);
 	const { id } = useParams();
 	const [orderProducts, setOrderProducts] = useState([]);
+	const [value, setValue] = useState([]);
 	const navigate = useNavigate();
 
-	useEffect(() => {
+	useMemo(() => {
 		fetchOneOrder(id).then((order) => {
 			setOrderProducts(order.order_products);
+			setValue(order.order_products.reduce((curr, next) => curr + next.count * next.product.price, 0).toFixed(2));
 		});
 	}, [id]);
 
@@ -51,6 +53,7 @@ const OrderPage = observer(() => {
 					count={op.count}
 				/>
 			))}
+			{value}
 			<PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}>
 				<PayPalButtons
 					style={{ color: "silver", layout: "horizontal", tagline: false, shape: "pill" }}
@@ -60,10 +63,7 @@ const OrderPage = observer(() => {
 								{
 									amount: {
 										currency_code: "USD",
-										value: orderProducts.reduce(
-											(curr, next) => curr + next.count * next.product.price,
-											0
-										),
+										value,
 									},
 									description: "TretStore order",
 									custom_id: id,

@@ -1,11 +1,14 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Dropdown, Form, Modal, Row } from "react-bootstrap";
-import { Context } from "../..";
 import { createProduct, fetchBrands, fetchTypes } from "../../http/productAPI";
 
 const CreateProduct = observer(({ show, onHide }) => {
-	const { product } = useContext(Context);
+	const [types, setTypes] = useState([]);
+	const [brands, setBrands] = useState([]);
+
+	const [type, setType] = useState({});
+	const [brand, setBrand] = useState({});
 
 	const [price, setPrice] = useState(0);
 	const [name, setName] = useState("");
@@ -13,9 +16,10 @@ const CreateProduct = observer(({ show, onHide }) => {
 	const [info, setInfo] = useState([]);
 
 	useEffect(() => {
-		fetchTypes().then((data) => product.setTypes(data));
-		fetchBrands().then((data) => product.setBrands(data));
-	}, [product]);
+		console.log("CreateProduct useEffect");
+		fetchTypes().then((data) => setTypes(data));
+		fetchBrands().then((data) => setBrands(data));
+	}, []);
 
 	const addInfo = () => {
 		setInfo([...info, { title: "", description: "", number: Date.now() }]);
@@ -36,8 +40,8 @@ const CreateProduct = observer(({ show, onHide }) => {
 		formData.append("name", name);
 		formData.append("price", `${price}`);
 		formData.append("img", file);
-		formData.append("brandId", product.selectedBrand.id);
-		formData.append("typeId", product.selectedType.id);
+		formData.append("brandId", brand.id);
+		formData.append("typeId", type.id);
 		formData.append("info", JSON.stringify(info));
 		createProduct(formData).then((data) => onHide());
 	};
@@ -50,21 +54,21 @@ const CreateProduct = observer(({ show, onHide }) => {
 			<Modal.Body>
 				<Form>
 					<Dropdown className="mt-3">
-						<Dropdown.Toggle>{product.selectedType.name || "Select type"}</Dropdown.Toggle>
+						<Dropdown.Toggle>{type.name || "Select type"}</Dropdown.Toggle>
 						<Dropdown.Menu>
-							{product.types.map((type) => (
-								<Dropdown.Item onClick={() => product.setSelectedType(type)} key={type.id}>
+							{types.map((type) => (
+								<Dropdown.Item onClick={() => setType(type)} key={type.id}>
 									{type.name}
 								</Dropdown.Item>
 							))}
 						</Dropdown.Menu>
 					</Dropdown>
 					<Dropdown className="mt-3">
-						<Dropdown.Toggle>{product.selectedBrand.name || "Select brand"}</Dropdown.Toggle>
+						<Dropdown.Toggle>{brand.name || "Select brand"}</Dropdown.Toggle>
 
 						<Dropdown.Menu>
-							{product.brands.map((brand) => (
-								<Dropdown.Item onClick={() => product.setSelectedBrand(brand)} key={brand.id}>
+							{brands.map((brand) => (
+								<Dropdown.Item onClick={() => setBrand(brand)} key={brand.id}>
 									{brand.name}
 								</Dropdown.Item>
 							))}
