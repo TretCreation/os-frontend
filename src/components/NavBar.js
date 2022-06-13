@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { Context } from "..";
-import { Link } from "react-router-dom";
 import { ADMIN_ROLE, ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import Search from "./Search";
 import CartWidget from "./CartWidget";
-import { Navbar, Container, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Container, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -28,11 +27,9 @@ const NavBar = observer(() => {
 				<Navbar.Brand
 					className="navbar-brand fw-bold fs-5"
 					href={SHOP_ROUTE}
-					style={
-						{
-							// textTransform: "uppercase",
-						}
-					}
+					// style={{
+					// 	textTransform: "uppercase",
+					// }}
 				>
 					Tret Store
 				</Navbar.Brand>
@@ -41,7 +38,7 @@ const NavBar = observer(() => {
 					<Search />
 					<CartWidget />
 					{user.isAuth ? (
-						<div>
+						<>
 							{user.role === ADMIN_ROLE && (
 								<Button
 									variant="outline-success"
@@ -64,9 +61,9 @@ const NavBar = observer(() => {
 							>
 								Log out
 							</Button>
-						</div>
+						</>
 					) : (
-						<div>
+						<>
 							<Button
 								variant="outline-success"
 								// style={{
@@ -87,7 +84,7 @@ const NavBar = observer(() => {
 							>
 								Sign Up
 							</Button>
-						</div>
+						</>
 					)}
 				</Navbar.Collapse>
 			</Container>
