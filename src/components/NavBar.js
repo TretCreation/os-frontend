@@ -25,18 +25,16 @@ const NavBar = observer(() => {
 	return (
 		<Navbar bg="light" expand="lg">
 			<Container fluid>
-				<Navbar.Brand href="#">
-					<Nav.Link
-						className="navbar-brand fw-bold fs-5"
-						href={SHOP_ROUTE}
-						style={
-							{
-								// textTransform: "uppercase",
-							}
+				<Navbar.Brand
+					className="navbar-brand fw-bold fs-5"
+					href={SHOP_ROUTE}
+					style={
+						{
+							// textTransform: "uppercase",
 						}
-					>
-						Tret Store
-					</Nav.Link>
+					}
+				>
+					Tret Store
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
