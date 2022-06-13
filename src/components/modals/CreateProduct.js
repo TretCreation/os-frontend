@@ -16,7 +16,6 @@ const CreateProduct = observer(({ show, onHide }) => {
 	const [info, setInfo] = useState([]);
 
 	useEffect(() => {
-		console.log("CreateProduct useEffect");
 		fetchTypes().then((data) => setTypes(data));
 		fetchBrands().then((data) => setBrands(data));
 	}, []);

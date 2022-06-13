@@ -49,3 +49,8 @@ export const deleteProductInfo = async (id) => {
 	const { data } = await $authHost.delete("api/product/productInfo/" + id);
 	return data;
 };
+
+export const getRecommended = async (id) => {
+	const { data } = await $authHost.delete("api/product/" + id + "/recommended/");
+	return data;
+};
