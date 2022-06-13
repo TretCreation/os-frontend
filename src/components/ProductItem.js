@@ -12,6 +12,7 @@ const ProductItem = ({ product }) => {
 				<Card style={{ wight: 150, cursor: "pointer" }} border={"light"}>
 					<Image width={"80%"} height={"80%"} src={process.env.REACT_APP_DO_BUCKET_URL + product.img} />
 					<div>{product.name}</div>
+					<div>${product.price}</div>
 				</Card>
 			</Col>
 		</>
