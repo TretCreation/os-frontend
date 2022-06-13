@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Search from "./Search";
 import CartWidget from "./CartWidget";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = observer(() => {
     const { user } = useContext(Context);
@@ -29,59 +29,93 @@ const NavBar = observer(() => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container">
-                    <Link className="navbar-brand fw-bold fs-5" to={SHOP_ROUTE}>
+            <nav
+                className="navbar navbar-expand-lg navbar-light"
+                style={{ backgroundColor: "#ededec" }}
+            >
+                <div className="container-fluid">
+                    <Link
+                        className="navbar-brand fw-bold fs-5"
+                        to={SHOP_ROUTE}
+                        style={{
+                            textTransform: "uppercase",
+                        }}
+                    >
                         Tret Store
                     </Link>
+                    <button
+                        aria-controls="navbarSupportedContent"
+                        data-target="#navbarSupportedContent"
+                        data-toggle="collapse"
+                        type="button"
+                        aria-label="Toggle navigation"
+                        className="navbar-toggler"
+                        aria-expanded="false"
+                    >
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
                     <div
                         className="collapse navbar-collapse"
                         id="navbarSupportedContent"
                     >
-                        <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-                            <Search />
-                        </ul>
-                        <div>
-                            <CartWidget />
-                        </div>
-                        <div>
-                            {user.isAuth ? (
-                                <div>
-                                    {user.role === ADMIN_ROLE && (
+                        <Search />
+                        <div className="me-auto my-2 my-lg-0 navbar-nav navbar-nav-scroll">
+                            <div>
+                                <CartWidget />
+                            </div>
+                            <div>
+                                {user.isAuth ? (
+                                    <div>
+                                        {user.role === ADMIN_ROLE && (
+                                            <button
+                                                style={{
+                                                    boxShadow: "none",
+                                                }}
+                                                className="btn btn-outline-dark btn-sm"
+                                                onClick={() =>
+                                                    navigate(ADMIN_ROUTE)
+                                                }
+                                            >
+                                                Admin
+                                            </button>
+                                        )}
                                         <button
+                                            style={{
+                                                boxShadow: "none",
+                                            }}
                                             className="btn btn-outline-dark btn-sm"
+                                            onClick={() => logOut()}
+                                        >
+                                            Log out
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <button
+                                            style={{
+                                                boxShadow: "none",
+                                            }}
+                                            className="btn btn-outline-dark btn-sm ml-2 me-1"
                                             onClick={() =>
-                                                navigate(ADMIN_ROUTE)
+                                                navigate(LOGIN_ROUTE)
                                             }
                                         >
-                                            Admin
+                                            Log In
                                         </button>
-                                    )}
-                                    <button
-                                        className="btn btn-outline-dark btn-sm"
-                                        onClick={() => logOut()}
-                                    >
-                                        Log out
-                                    </button>
-                                </div>
-                            ) : (
-                                <div>
-                                    <button
-                                        className="btn btn-outline-dark btn-sm ml-2 me-1"
-                                        onClick={() => navigate(LOGIN_ROUTE)}
-                                    >
-                                        Log In
-                                    </button>
-                                    <button
-                                        className="btn btn-outline-dark btn-sm"
-                                        onClick={() =>
-                                            navigate(REGISTRATION_ROUTE)
-                                        }
-                                    >
-                                        Sign Up
-                                    </button>
-                                </div>
-                            )}
+                                        <button
+                                            style={{
+                                                boxShadow: "none",
+                                            }}
+                                            className="btn btn-outline-dark btn-sm"
+                                            onClick={() =>
+                                                navigate(REGISTRATION_ROUTE)
+                                            }
+                                        >
+                                            Sign Up
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
