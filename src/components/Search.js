@@ -15,18 +15,10 @@ const Search = observer(() => {
             <input
                 data-hover="input"
                 type="search"
-                className="form-control"
+                className="form-control form-search-item"
                 placeholder="Пошук"
                 aria-label="Search"
                 onChange={(e) => shop.setFilterText(e.target.value)}
-                style={{
-                    width: "20rem",
-                    outline: "0",
-                    boxShadow: "none",
-                    borderColor: "#313132",
-                    margin: "0 auto",
-                    background: "transparent",
-                }}
             />
         </div>
     );

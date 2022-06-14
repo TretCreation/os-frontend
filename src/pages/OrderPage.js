@@ -64,7 +64,8 @@ const OrderPage = observer(() => {
                         count={op.count}
                     />
                 ))}
-                {value}
+
+                <span className="proguct-price">Сума замовлення: ${value}</span>
                 <PayPalScriptProvider
                     options={{
                         "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,

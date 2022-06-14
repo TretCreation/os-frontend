@@ -21,7 +21,7 @@ const OrderItem = ({ productId, name, price, img, count }) => {
                     src={process.env.REACT_APP_DO_BUCKET_URL + img}
                 />
                 <div className="card-order-item-name">{name}</div>
-                <div className="card-order-item-price">Ціна: {price}</div>
+                <div className="card-order-item-price">Ціна: ${price}</div>
                 <div className="card-order-item-name">Кількість: {count}</div>
             </Card>
         </Col>

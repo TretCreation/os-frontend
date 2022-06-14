@@ -8,7 +8,7 @@ button.navbar-toggler:focus {
 }
 /* card */
 .item-row {
-    justify-content: center;
+    /* justify-content: center; */
 }
 .card-body .card.border-light {
     padding: 1rem 0.3rem;
@@ -217,13 +217,51 @@ justify-content: center;
     max-height: 130px;
 
 }
+span.proguct-price {
+    font-size: 20px;
+    font-weight: 600;
+}
+.form-search-item {
+    width: 100%;
+    outline: 0px;
+    box-shadow: none;
+    border-color: rgb(49, 49, 50);
+    margin: 0 1rem;
+    background: transparent;
+}
+.form-search-item:focus {
+    background-color: #fff;
+    border-color: rgb(49, 49, 50);
+    outline: 0;
+    box-shadow:none;
+}
+.brand-container-item.border-light {
+    cursor: pointer;
+    max-width: 10rem;
+    background-color: #faf9f7;
 
+    border-radius: 0;
+    border-bottom: 1px solid #eae9e7!important;
+}
+.brand-container-item.border-light:hover {
+    background-color: #ffffff;
+}
+.brand-container-item.border-danger {
+    background-color: #ffffff;
+    border-color: #f8f9fa!important;
+    border-bottom: 1px solid #0077ed!important;
+    border-radius: 0;
+}
 @media (max-width: 1024px) {
     .btn-nav {
         margin-top: .5rem;
     }
 }
-
+@media (max-width: 992px) {
+    .form-control.form-search-item{
+        margin-top: 1rem;
+    }
+}
 @media (max-width: 768px) {
 .button-update, .button-remove {
     box-shadow: none;
@@ -240,4 +278,9 @@ justify-content: center;
 .card-container-top{
     margin-right: 0rem;
 }
+}
+@media (max-width: 480px) {
+    .nav-cart{
+        width: 100%;
+    }
 }

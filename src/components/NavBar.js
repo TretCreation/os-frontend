@@ -34,8 +34,8 @@ const NavBar = observer(() => {
             <Navbar bg="" expand="lg">
                 <Container
                     fluid
+                    className="container"
                     style={{
-                        maxWidth: "1024px",
                         margin: "0 auto",
                     }}
                 >
