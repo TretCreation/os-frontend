@@ -123,11 +123,9 @@ button.navbar-toggler:focus {
     font-weight: 400;
 }
 .card-product-cart button:hover {
-    background-color: #0077ed;
+    background-color: #1f81e5;
 }
-.card-product-cart button:focus {
-    background-color: #0077ed;
-}
+
 .cart-product-discr {
     font-size: 26px;
     line-height: 1.125;
@@ -210,7 +208,7 @@ button.navbar-toggler:focus {
     box-shadow: none;
 }
 .cart-order.cart-order-done .mt-3.col-md-3 img {
-    max-height: 130px;
+    height: 130px;
 
 }
 span.proguct-price {
@@ -294,6 +292,46 @@ span.proguct-price {
     left: 0;
     width: 100%;
 }
+#buttons-container .paypal-button-container {
+    min-width: 250px!important;
+    max-width: 300px!important;
+    margin: 2rem auto!important;
+}
+.card-recom-container {
+    width: 100%;
+    max-width: 250px;
+    padding: 1rem 0.3rem;
+}
+.card-recom-container .card {
+    padding: 1rem 0.3rem;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 5px;
+    white-space: normal;
+    height: 250px;
+    box-shadow: 2px 4px 4px rgb(0 0 0 / 6%);
+    transition: all .3s cubic-bezier(0,0,.5,1);
+
+}
+.card-recom-container .card:hover {
+    box-shadow: 1px 3px 4px rgb(0 0 0 / 8%);
+    transform: scale3d(1.01,1.01,1.01);
+}
+.card-order-item-img {
+    height: 150px;
+}
+.card-recom-container .card img {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    max-height: 100%;
+    width: auto;
+    max-width: 100%;
+}
+
+.card-recom-container .card-order-item-name{
+text-align: center;
+}
 @media (max-width: 1024px) {
     .btn-nav {
         margin-top: .5rem;
@@ -316,6 +354,14 @@ span.proguct-price {
     }
     .container-type-group {
         max-width: 100%;
+    }
+    .paypal-button-container {
+        min-width: 250px;
+        max-width: 300px;
+        margin: 2rem auto;
+    }
+    .cart-order.cart-order-done {
+        justify-content: center;
     }
 }
 @media (max-width: 768px) {
@@ -341,6 +387,11 @@ span.proguct-price {
     max-width: 100%;
     width: 50%!important;
 }
+.paypal-button-container {
+    min-width: 250px;
+    max-width: 300px;
+    margin: 2rem auto;
+}
 }
 @media (max-width: 480px) {
     .nav-cart{
@@ -351,5 +402,10 @@ span.proguct-price {
     }
     .brand-container-item.border-light {
         width: 100%!important;
+    }
+    .paypal-button-container {
+        min-width: 250px;
+        max-width: 300px;
+        margin: 2rem auto;
     }
 }
