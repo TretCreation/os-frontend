@@ -259,6 +259,7 @@ span.proguct-price {
 }
 .container-type-group {
     margin: 1rem 0 0 -0.5rem;
+    max-width: 90%;
 }
 .container-type-group button{
     border-bottom-left-radius: 0!important;
@@ -285,6 +286,9 @@ span.proguct-price {
     text-align-last: center;
     display: flex;
     align-items: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 @media (max-width: 1024px) {
     .btn-nav {
@@ -300,6 +304,9 @@ span.proguct-price {
     }
     .container-type-group button {
         width: 25%;
+    }
+    .container-type-group {
+        max-width: 100%;
     }
 }
 @media (max-width: 768px) {
