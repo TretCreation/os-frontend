@@ -218,11 +218,11 @@ span.proguct-price {
     font-weight: 600;
 }
 .form-search-item {
-    width: 100%;
+    width: 50%;
     outline: 0px;
     box-shadow: none;
     border-color: rgb(49, 49, 50);
-    margin: 0 1rem;
+    margin: 0 10% 0 40%;
     background: transparent;
 }
 .form-search-item:focus {
@@ -280,6 +280,10 @@ span.proguct-price {
     border-radius: 9px;
     margin: 3rem auto;
 }
+.main-container {
+    min-height: calc(100vh - 6.45rem);
+}
+
 #footer {
     height: 3rem;
     background-color: #eae9e7;
@@ -296,8 +300,13 @@ span.proguct-price {
     }
 }
 @media (max-width: 992px) {
+    .item-row{
+        justify-content: center;
+    }
     .form-control.form-search-item{
         margin-top: 1rem;
+        width: 100%;
+        margin: 1rem 0 0 0;
     }
     .container-type-group .list-group.list-group-horizontal {
         flex-wrap: wrap;
