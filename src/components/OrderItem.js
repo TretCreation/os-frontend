@@ -20,9 +20,9 @@ const OrderItem = ({ productId, name, price, img, count }) => {
                     height={150}
                     src={process.env.REACT_APP_DO_BUCKET_URL + img}
                 />
-                <div>{name}</div>
-                <div>price: {price}</div>
-                <div>count: {count}</div>
+                <div className="card-order-item-name">{name}</div>
+                <div className="card-order-item-price">Ціна: {price}</div>
+                <div className="card-order-item-name">Кількість: {count}</div>
             </Card>
         </Col>
     );

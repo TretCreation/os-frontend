@@ -191,13 +191,13 @@ justify-content: center;
     align-items: baseline
 }
 .card-order-item-count input{
-    width: 60px;
+    width: 75px;
     margin: 0 0.7rem;
 }
 .card-order--count{
     display: block;
     margin-bottom: 5rem;
-    width: 30rem;
+    width: 14rem;
     height: 2.3rem;
     border: 1px solid #0071e3;
     background: #0071e3;
@@ -213,7 +213,10 @@ justify-content: center;
 .card-order--count:focus {
     box-shadow: none;
 }
+.cart-order.cart-order-done .mt-3.col-md-3 img {
+    max-height: 130px;
 
+}
 
 @media (max-width: 1024px) {
     .btn-nav {

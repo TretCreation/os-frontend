@@ -47,14 +47,14 @@ const CartPage = observer(() => {
                         count={product.count}
                     />
                 ))}
-                <Button
-                    variant={"outline-dark"}
-                    onClick={makeOrder}
-                    className="card-order--count"
-                >
-                    Замовити
-                </Button>
             </Row>
+            <Button
+                variant={"outline-dark"}
+                onClick={makeOrder}
+                className="card-order--count"
+            >
+                Замовити
+            </Button>
         </div>
     );
 });
