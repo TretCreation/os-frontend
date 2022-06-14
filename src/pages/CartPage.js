@@ -32,7 +32,7 @@ const CartPage = observer(() => {
     };
 
     return (
-        <div className="container">
+        <div className="container main-container">
             <Row className="d-flex cart-order">
                 <div>
                     <h1 className="cart-product-discr">Кошик</h1>
