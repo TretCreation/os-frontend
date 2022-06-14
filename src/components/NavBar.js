@@ -12,8 +12,6 @@ import { useNavigate } from "react-router-dom";
 import Search from "./Search";
 import CartWidget from "./CartWidget";
 import { Navbar, Container, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = observer(() => {
     const { user } = useContext(Context);

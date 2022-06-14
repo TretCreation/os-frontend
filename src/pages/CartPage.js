@@ -24,7 +24,7 @@ const CartPage = observer(() => {
             count: item.count,
         }));
         const formData = new FormData();
-        formData.append("userId", user.id);
+        formData.append("userId", user.isAuth ? user.id : 0);
         formData.append("cartData", JSON.stringify(cartData));
         createOrder(formData).then(
             (order) => order && navigate(ORDER_ROUTE + "/" + order.id)
