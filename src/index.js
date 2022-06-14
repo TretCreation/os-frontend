@@ -6,6 +6,7 @@ import UserStore from "./store/UserStore";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import CartStore from "./store/CartStore";
+import "./style/style.css";
 
 export const Context = createContext(null);
 
