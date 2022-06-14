@@ -34,6 +34,7 @@ const BrandsBar = observer(() => {
 
     return (
         <Row className="d-flex brand-container">
+            <div className="brand-name-bar">Бренд</div>
             {brands.map((brand) => (
                 <Card
                     key={brand.id}

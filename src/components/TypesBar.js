@@ -13,7 +13,7 @@ const TypesBar = observer(() => {
     }, []);
 
     return (
-        <div>
+        <div className="container-type-group">
             <ListGroup horizontal>
                 {types.map((type) => (
                     <ListGroup.Item

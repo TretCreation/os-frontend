@@ -135,6 +135,7 @@ const ProductPage = observer(() => {
                     </Row>
                 )}
             </div>
+            <span className="decorative-line"></span>
             {recommended.length > 0 && (
                 <h3 className="cart-product-discr">Ми рекомендуємо:</h3>
             )}
