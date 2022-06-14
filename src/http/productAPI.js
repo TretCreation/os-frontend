@@ -35,8 +35,8 @@ export const deleteProduct = async (id) => {
 	return data;
 };
 
-export const fetchProducts = async (typeId, brandId, page, limit = 5, filter = "") => {
-	const { data } = await $host.get("api/product", { params: { typeId, brandId, page, limit, filter } });
+export const fetchProducts = async (brands, typeId, page, limit = 5, filter = "") => {
+	const { data } = await $host.get("api/product", { params: { brands, typeId, page, limit, filter } });
 	return data;
 };
 
