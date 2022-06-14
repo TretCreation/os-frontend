@@ -95,7 +95,7 @@ const ProductPage = observer(() => {
     };
 
     return (
-        <Container>
+        <Container className="main-container">
             <div className="card-container-product">
                 <div className="card-container-top">
                     <Col md={12} className="cart-1">

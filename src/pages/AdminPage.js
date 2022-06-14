@@ -9,7 +9,7 @@ const AdminPage = () => {
     const [typeVisible, setTypeVisible] = useState(false);
     const [productVisible, setProductVisible] = useState(false);
     return (
-        <Container>
+        <Container className="main-container">
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
